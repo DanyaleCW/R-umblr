@@ -1,0 +1,17 @@
+<h1>Edit Post</h1>
+<form action="/post/<%= @specific_post.post_name %>" method="post">
+	<input id="hidden" type="hidden" name="_method" value="PUT">
+	<label for="post_name">Title:</label> 
+	<textarea name="post_name" type="text" ><%= @post.post_name %></textarea> </br>
+	<label for="content">Content:</label> 
+	<textarea name="content" rows="20" cols="70"><%= @post.content %></textarea></br>
+	<input type="submit" value="Edit"/>
+</form>
+
+<h1>Delete Post</h1>
+<h2>Warning, once your click delete post the water will remain flat.</h2>
+
+<form action="/post/<%= @post.post_name %>" method="post">
+	<input type="hidden" name="method" value="delete" /> 
+	<input type="submit" value="Delete Post" style="width:100px;height:20px;">
+</form>
