@@ -1,0 +1,12 @@
+<h1>Posts</h1>
+
+<a href="/profile">Back to Profile Page</a></br>
+<a href="/postnew">Create Post</a></br>
+
+	<% @post.each do |post| %>
+			<h2>Title:</h2><%= post.post_name %>
+			<h2>Content:</h2><%= post.content %>
+	<% end %>
+
+	need to write a loop so it only loops through 20 times
+	and write a method and an instance to have another users posts show up.
