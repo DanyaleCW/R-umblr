@@ -1,19 +1,19 @@
 
 <h1>Edit Profile</h1><br/>
 
-<form action="/user/<%= @specific_user.id %>" method="POST">
+<form action="/user/<%= @user.id %>" method="POST">
   <input type="hidden" name="method" value="PUT">
-  <input type="text" name="name" value="<%= @specific_user.first_name %>">
-  <input type="text" name="name" value="<%= @specific_user.last_name %>">
-  <input type="text" name="email" value="<%= @specific_user.email %>">
-   <input type="text" name="password" value="<%= @specific_user.password %>">
-  <input type="text" name="birthday" value="<%= @specific_user.birthday%>">
+  <input type="text" name="name" value="<%= @user.first_name %>">
+  <input type="text" name="name" value="<%= @user.last_name %>">
+  <input type="text" name="email" value="<%= @user.email %>">
+   <input type="text" name="password" value="<%= @user.password %>">
+  <input type="text" name="birthday" value="<%= @user.birthday%>">
   <input type="submit" value="Edit Profile" style="width:100px;height:100px">
 </form>
 
 <h1>Warning, once your click delete account the water will remain flat.</h1>
 
-<form action="/user/<%= @specific_user.id %>" method="post">
+<form action="/user/<%= @user.id %>" method="post">
   <input type="hidden" name="_method" value="DELETE">  
   <input type="submit" value="Delete Account" style="width:100px;height:20px;">
 </form>

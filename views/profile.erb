@@ -1,12 +1,32 @@
 
 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel=”stylesheet”  href="/Public/main.css">
+	<title>R-umblr</title>
+</head> 
 
 <h1><%=@user.first_name%>, welcome back. I hope the waves were breaking in your favor.</h1>
 
 <blockquote>
 "We all strive to find something unique and special that we are passionate about that separates us from the rest." - Carissa Moore</blockquote></br>
-<a href="/post/:id">Posts</a></br>
-<a href="/postnew">Create Post</a></br>
-<a href="/post/edit/">Edit Post</a></br>
+<a href="/postnew/:id">Create Post</a></br>
 <a href="/login">Log Out</a></br>
-<a href='/user/<%= @user.id %>/edit'>Edit Account</a>
+<a href='/user/<%= @user.id %>/edit'>Edit Account</a></br>
+<a href="/otheruser/posts">Post for other users</a></br>
+
+<% @posts.each do |post|%>
+<h2>Title: <%= post.post_name%></h2>
+<h3>Article: <%= post.content%></h3>
+<% end%>
+
+
+
+
+<script type="text/javascript" src="/Public/main.js"></script>
+</body>
+</html>
+

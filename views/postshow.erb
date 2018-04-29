@@ -2,4 +2,12 @@
 
 
 	<h3>I need something to show up</h3>
-<a href="/profile">Return to profile page</a></br>
+<a href="/profile">Return to post page</a></br>
+
+posts for user not signed in
+
+
+<% @posts.each do |post| %>
+<h2>Title: <%= post.post_name%></h2>
+<h3>Article: <%= post.content%></h3>
+<% end%>
