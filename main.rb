@@ -8,16 +8,16 @@ set :database, {adapter: 'postgresql', database: 'blog'}
 enable :sessions
 
 get '/' do
-    erb :index
+    erb :main
 end    
 
 get '/signup' do
-    erb :'/signup'
+    erb :new
 #if sign up successful redirect to profile page
 end  
 
 get '/login' do
-    erb :'/login'
+    erb :login
 end  
 
 post '/user/login' do
@@ -32,11 +32,16 @@ post '/user/login' do
     end 
 end  
 
+get '/new' do
+    erb :new
+end
+
 get '/profile' do
-# find users login information and redirects to profile    
+#find users login information and redirects to profile    
     @user = User.find(session[:id])
-    erb :profile
-end   
+    @posts = Post.where(user_id: @user.id).limit(20)
+    erb :profile, :layout => :layout
+end 
 
 get '/logout/' do
     #clears cookies
@@ -46,23 +51,33 @@ end
 
 post '/user/new' do
     #creates new user
-    @newuser = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password],
+    @user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password],
     birthday: params[:birthday])
     #sets cookies for user and logs in
-    session[:id] = @newuser.id
+    session[:id] = @user.id
     redirect '/profile'
     end    
 
+#READ an existing instance of User
+#get /users/1  means get the users show page for User with an ID of 1
+get '/users/:id' do
+  #ruby sees params{id=value}
+  # /users/1
+  #ruby sees params{id: 1}
+  @user = User.find(params[:id]) #define instance variable for view
+  erb :show #show single user view
+end
+
 #form for editing and deleting a user 
 get '/user/:id/edit' do 
-    @specific_user = User.find(params[:id])
+    @user = User.find(params[:id])
     erb :edit
 end
 
 #edit user 
 put '/user/:id' do
-    @specific_user = User.find(params[:id])
-    @specific_user.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password],
+    @user = User.find(params[:id])
+    @user.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password],
     birthday: params[:birthday])
     session[:id] = @user.id
     end  
@@ -71,7 +86,7 @@ post '/user/:id' do
   redirect '/profile'
 end
 
-#delete user
+#delete user should destroy posts as well as user
 delete '/user/:id' do
     User.destroy(params[:id])
     redirect '/delete'
@@ -83,38 +98,29 @@ delete '/user/:id' do
 
 
  ####POSTS
-#page to display all posts
-get '/post' do
-    @posts = Post.all
-    #session[:id] = @specific_user.id
-    erb :postindex
-end
-
-#post page
-get '/post/:id' do
-    erb :posts
-end    
+#post page   
 #create a post form
-
-get '/postnew' do
+get '/postnew/:id' do
+    @user = User.find(session[:id])
     erb :postnew
 end
 
 #create new post
-post '/post/new' do
-  #@newpost = Post.find_by(params[:id])
-  @newpost = Post.create(post_name: params[:post_name], content: params[:content])
-  session[:id] = @newpost.id
-  redirect  '/postshow'
+post '/postnew/:id' do
+  @user = User.find(session[:id])
+  @posts = Post.create(post_name: params[:post_name], content: params[:content], user_id: @user.id)
+  redirect  '/profile'
 end
 
-get '/postshow' do
-    erb :postshow
-end 
-
-get '/post/edit/' do
-    erb :postedit
+# gets requested user profile and shows appropriate profile view
+get "/otheruser/posts" do
+    @user = User.find_by(password: params[:password])
+    @posts = Post.where(user_id: @user)
+    @other_user = @user
+    erb :postshow  
 end
+
+#below I am working the user having the ability to edit and delete a post
 
 # get '/post/:id' do
 #     @specific_post = Post.find(params[:id])

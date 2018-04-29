@@ -1,0 +1,10 @@
+
+
+
+<%= yield %>
+
+
+<% @posts.each do |post|%>
+<h2>Title: <%= post.post_name%></h2>
+<h3>Article: <%= post.content%></h3>
+<% end%>
