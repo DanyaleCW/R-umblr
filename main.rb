@@ -40,7 +40,7 @@ get '/profile' do
 #find users login information and redirects to profile    
     @user = User.find(session[:id])
     @posts = Post.where(user_id: @user.id).limit(20)
-    erb :profile, :layout => :layout
+    erb :profile
 end 
 
 get '/logout/' do
@@ -88,6 +88,7 @@ end
 
 #delete user should destroy posts as well as user
 delete '/user/:id' do
+    @user = User.find(session[:id])
     User.destroy(params[:id])
     redirect '/delete'
  end   
@@ -112,11 +113,12 @@ post '/postnew/:id' do
   redirect  '/profile'
 end
 
-# gets requested user profile and shows appropriate profile view
-get "/otheruser/posts" do
-    @user = User.find_by(password: params[:password])
-    @posts = Post.where(user_id: @user)
-    @other_user = @user
+#gets other peoples blog posts
+get "/:otheruser/posts" do
+    #@user = User.find(password: params[:password])
+    @posts = Post.where(user_id: params[:otheruser])
+    #@other_user = @user
+    #@user_id = @user
     erb :postshow  
 end
 
