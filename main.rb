@@ -3,7 +3,7 @@ require "sinatra/activerecord"
 require_relative './models/Post'
 require_relative './models/User'
 
-set :database, {adapter: 'postgresql', database: 'blog'}
+#set :database, {adapter: 'postgresql', database: 'blog'}
 #stores cookies
 enable :sessions
 
