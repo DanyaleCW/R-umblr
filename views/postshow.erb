@@ -1,9 +1,12 @@
 
+
 <h1>You may like these other posts from our users.</h1>
 <a href="/profile">Return to post page</a></br>
 
 
-<% @posts.each do |post| %>
-<h2>Title: <%= post.post_name%></h2>
-<h3>Article: <%= post.content%></h3>
-<% end%>
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <%= post.post_name %>
+    <%= post.post_content %>
+  <% end %>
+<% end %>

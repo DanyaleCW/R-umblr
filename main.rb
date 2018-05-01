@@ -3,7 +3,7 @@ require "sinatra/activerecord"
 require_relative './models/Post'
 require_relative './models/User'
 
-#set :database, {adapter: 'postgresql', database: 'blog'}
+set :database, {adapter: 'postgresql', database: 'blog'} #makes sure to comment out when pushing to heroku
 #stores cookies
 enable :sessions
 
@@ -98,8 +98,7 @@ delete '/user/:id' do
  end 
 
 
- ####POSTS
-#post page   
+ ####POSTS   
 #create a post form
 get '/postnew/:id' do
     @user = User.find(session[:id])
@@ -113,23 +112,15 @@ post '/postnew/:id' do
   redirect  '/profile'
 end
 
-#gets other peoples blog posts
-get "/:otheruser/posts" do
-    #@user = User.find(password: params[:password])
-    @posts = Post.where(user_id: params[:otheruser])
-    #@other_user = @user
-    #@user_id = @user
-    erb :postshow  
+#gets other peoples blog posts need to make a route in the profile link <%%> that goes to each of the routes for the individual users
+
+get '/posts/:username' do
+    @user = User.where(params[:first_name])
+    @posts = @user.posts
+    erb :postshow
 end
 
 #below I am working the user having the ability to edit and delete a post
-
-# get '/post/:id' do
-#     @specific_post = Post.find(params[:id])
-#     @title = @post_name
-#     erb :postedit
-
-# end
 
 #form for editing and deleting blog posts
 # get '/post/:id/edit' do
