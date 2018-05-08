@@ -3,7 +3,7 @@ require "sinatra/activerecord"
 require_relative './models/Post'
 require_relative './models/User'
 
-set :database, {adapter: 'postgresql', database: 'blog'} #makes sure to comment out when pushing to heroku
+#set :database, {adapter: 'postgresql', database: 'blog'} #makes sure to comment out when pushing to heroku
 #stores cookies
 enable :sessions
 
