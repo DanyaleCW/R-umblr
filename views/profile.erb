@@ -18,16 +18,16 @@
             <a href="/login">Log Out</a></br>
             <a href='/user/<%= @user.id %>/edit'>Edit Account</a></br>
 
-            <% if @posts %>
-            <a href='/<%= @user.posts %>/posts'><%= @user.first_name %>'s posts</a>
-            <% end %>  
+            <a href='posts/'>Other Bloggers Posts you may enjoy</a>
+           
+             
         
               
 
             <% @posts.each do |post|%>
             <h2>Title: </h2><h3><%= post.post_name%></h3>
             <h2>Article: </h2><h3> <%= post.content%></h2>
-<% end%>
+            <% end%>
 
 <script type="text/javascript" src="/Public/main.js"></script>
 </body>

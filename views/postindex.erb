@@ -1,11 +1,17 @@
-<h1>Posts</h1>
+<h1>Other User's Posts</h1>
 
 <a href="/profile">Back to Profile Page</a></br>
-<a href="/postnew/:id">Create Post</a></br>
 
-	
 
-	need to write a loop so it only loops through 20 times
-	and write a method and an instance to have another users posts show up.
 
+
+
+<h1>?'s Blogs</h1>
+
+
+<% @post = Post.where.not(user_id: @user.id)%>
+<% @post.each do |post| %>
+	<h2>Title: </h2><h3><%= post.post_name %></h3>
+	<h2>Article: </h2><h3><%= post.content %></h3>
+<% end %>
 

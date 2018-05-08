@@ -112,13 +112,46 @@ post '/postnew/:id' do
   redirect  '/profile'
 end
 
-#gets other peoples blog posts need to make a route in the profile link <%%> that goes to each of the routes for the individual users
+#gets other peoples blog posts
+get '/posts/' do
+    @user = User.find(session[:id])
+    @posts = Post.where.not(user_id: @user.id).limit(20)
+    erb :postindex
+end 
 
-get '/posts/:username' do
-    @user = User.where(params[:first_name])
-    @posts = @user.posts
-    erb :postshow
-end
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #below I am working the user having the ability to edit and delete a post
 
