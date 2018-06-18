@@ -5,29 +5,58 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/Public/main.css">
-	<title>R-umblr</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+	<title>Surfin Life</title>
 </head> 
     <body>
-        <h1><%=@user.first_name%>, welcome back. I hope the waves were breaking in your favor.</h1>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+        <h4><%=@user.first_name%>'s Blog</h4>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="/postnew/:id">Create Post</a></li>
+            <li><a href='/user/<%= @user.id %>/edit'>Edit Account</a></li>
+            <li> <a href='posts/'>Other Bloggers Posts</a></li>
+            <li><a href="/login">Log Out</a></li>
+      </ul><br>
+      <%# <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div> %>
+      </div>
+    </div>
 
-            <h2><blockquote>
+    <div class="container">
+        <h2><blockquote>
             "We all strive to find something unique and special that we are passionate about that separates us from the rest." - Carissa Moore
             </blockquote></h2></br>
-            <a href="/postnew/:id">Create Post</a></br>
-            <a href="/login">Log Out</a></br>
-            <a href='/user/<%= @user.id %>/edit'>Edit Account</a></br>
 
-            <a href='posts/'>Other Bloggers Posts you may enjoy</a>
+    <br>
+        <%# <img src='images/surftail.jpg'>
+        <p class='desc'>Beach with Surfboard by Joschko Hammermann on <a href="https://unsplash.com/photos/eHtM8lZrU2A">Unsplash</a></p> %>        
            
-             
-        
-              
-
+        <div class="col-sm-9">
             <% @posts.each do |post|%>
-            <h2>Title: </h2><h3><%= post.post_name%></h3>
-            <h2>Article: </h2><h3> <%= post.content%></h2>
-            <% end%>
+            <h4><small>RECENT POSTS</small></h4>
+            <hr>
+            <h3><%= post.post_name%></h3>
+            <p> <%= post.content%></p>
+            <br><br>
+            <% end%>    
+    </div>
+    <br><br>       
+    </div>
+
+<%= erb :footer %>
+    
 
 <script type="text/javascript" src="/Public/main.js"></script>
 </body>

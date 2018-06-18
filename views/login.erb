@@ -1,11 +1,36 @@
-<h1>Please log-in</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+	<title>Surfin Life</title>
+</head> 
+<br>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-6 sidenav">
+            <h1>Please log-in</h1>
 
+    <br>
+    <form method="POST" action="/user/login">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="password" placeholder="Password">
+        <input type="submit" value="Submit" style="width:100px;height:25px;">
+    </form> 
+    <br>
+    </div>
+        </div>
 
-<form method="POST" action="/user/login">
-    <input type="text" name="email" placeholder="Email">
-    <input type="text" name="password" placeholder="Password">
-    <input type="submit" value="Submit" style="width:100px;height:20px;">
-</form>  
+<div class="container">
+    <h2><blockquote>
+    "It's so cool to be traveling around the world searching for good waves, meeting people, competing, living from the sport, and doing what you love. It's beautiful. - Jacqueline Silva"</blockquote></h2>
+    <br>
 
-<blockquote>
-"It's so cool to be traveling around the world searching for good waves, meeting people, competing, living from the sport, and doing what you love. It's beautiful. - Jacqueline Silva"</blockquote>
+        <img src='images/wave.jpg'>
+        <p class='desc'>Wave by Tim Marshall on <a href="https://unsplash.com/photos/EZSlp_sVXzM">Unsplash</a></p>
+</div>        
+
+<%= erb :footer %>

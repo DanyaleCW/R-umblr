@@ -1,17 +1,48 @@
-<h1>Other User's Posts</h1>
 
-<a href="/profile">Back to Profile Page</a></br>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+	<title>Surfin Life</title>
+</head> 
+    <body>
+
+	<div class="container-fluid">
+			<div class="row content">
+				<div class="col-sm-3 sidenav">
+			<h4><%=@user.first_name%>'s Blog</h4>
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="/profile">Back to Profile Page</a></li>
+		</ul><br>
+		</div>
+    </div>
+
+	<div class="container">
+        <h2><blockquote>"If you are doing what you love then you're doing what is right. Desire and passion resonate with your body, mind and soul. When you're passionate you don't question, judge, criticize, second-guess, or doubt. It's that passion that will fuel the fire to overcome challenges." - Layne Beachley</blockquote></h2></br>
+
+    <br>
+
+		<div class="col-sm-9">
+			<% @post = Post.where.not(user_id: @user.id)%>
+			<% @post.each do |post| %>
+			<h4><small>RECENT POSTS</small></h4>
+			<hr>
+			<h3><%= post.post_name %></h3>
+			<p><%= post.content %></p>
+			<br><br>
+			<% end%>    
+		</div>
+	<br><br> 
+		</div>      
+	</div>
 
 
-
-
-
-<h1>?'s Blogs</h1>
-
-
-<% @post = Post.where.not(user_id: @user.id)%>
-<% @post.each do |post| %>
-	<h2>Title: </h2><h3><%= post.post_name %></h3>
-	<h2>Article: </h2><h3><%= post.content %></h3>
-<% end %>
-
+<%= erb :footer %>
+</body>
+</html>

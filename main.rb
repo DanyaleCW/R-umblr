@@ -1,9 +1,9 @@
-require "sinatra"
 require "sinatra/activerecord"
+require 'sinatra'
 require_relative './models/Post'
 require_relative './models/User'
 
-#set :database, {adapter: 'postgresql', database: 'blog'} #makes sure to comment out when pushing to heroku
+set :database, {adapter: 'postgresql', database: 'blog'} #make sure to comment out when pushing to heroku
 #stores cookies
 enable :sessions
 
@@ -21,8 +21,7 @@ get '/login' do
 end  
 
 post '/user/login' do
-    @user = User.find_by(email: params[:email], password: params[:password]
-    )
+    @user = User.find_by(email: params[:email], password: params[:password])
     if @user != nil
         session[:id] = @user.id
         redirect '/profile'
@@ -39,7 +38,7 @@ end
 get '/profile' do
 #find users login information and redirects to profile    
     @user = User.find(session[:id])
-    @posts = Post.where(user_id: @user.id).limit(20)
+    @posts = Post.where(user_id: @user.id).limit(5)
     erb :profile
 end 
 
@@ -56,7 +55,7 @@ post '/user/new' do
     #sets cookies for user and logs in
     session[:id] = @user.id
     redirect '/profile'
-    end    
+end    
 
 #READ an existing instance of User
 #get /users/1  means get the users show page for User with an ID of 1
@@ -80,7 +79,7 @@ put '/user/:id' do
     @user.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password],
     birthday: params[:birthday])
     session[:id] = @user.id
-    end  
+end  
     
 post '/user/:id' do
   redirect '/profile'
@@ -93,9 +92,9 @@ delete '/user/:id' do
     redirect '/delete'
  end   
 
- get '/delete' do
+get '/delete' do
     erb :'/delete'
- end 
+end 
 
 
  ####POSTS   
@@ -115,7 +114,7 @@ end
 #gets other peoples blog posts
 get '/posts/' do
     @user = User.find(session[:id])
-    @posts = Post.where.not(user_id: @user.id).limit(20)
+    @posts = Post.where.not(user_id: @user.id).limit(5)
     erb :postindex
 end 
 

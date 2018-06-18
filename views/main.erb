@@ -1,7 +1,36 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+	<title>Surfin Life</title>
+</head> 
 <h1>Surfin Life</h1>
 <h2>A blog for Surfers by Surfers</h2>
 <h4>Please sign up or log in to access the blog</h4>
-<a href="/signup">Sign Up</a>
-<a href="/login">Log In</a>
 
-<h2><blockquote>"I think when a surfer becomes a surfer, it is almost like an obligation to be an environmentalist at the same time." – Kelly Slater</blockquote></h2>
+
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Log In</a></li>
+        </ul><br>
+            </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <h2><blockquote>"I think when a surfer becomes a surfer, it is almost like an obligation to be an environmentalist at the same time." – Kelly Slater</blockquote></h2>
+
+            <img src='images/beach.jpg'>
+            <p class='desc'>Beach in Spain by Renata Fraga on <a href="https://unsplash.com/photos/jGnt5J1Mae4">Unsplash</a></p>
+    </div>        
+
+<%= erb :footer %>
