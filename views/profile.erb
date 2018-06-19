@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <base href="/">
+    <%# <base href="/"> %>
     <link rel="stylesheet" type="text/html" href="public/main.css">
 	<title>Surfin Life</title>
 </head> 
@@ -16,13 +16,18 @@
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3 sidenav">
-        <h4><%=@user.first_name%>'s Blog</h4>
+        <h1><%=@user.first_name%>'s Blog</h1>
+
         <ul class="nav nav-pills nav-stacked">
             <li><a href="/postnew/:id">Create Post</a></li>
             <li><a href='/user/<%= @user.id %>/edit'>Edit Account</a></li>
             <li> <a href='posts/'>Other Bloggers Posts</a></li>
-            <li><a href="/login">Log Out</a></li>
-      </ul><br>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        </ul>
+            </div>
+            </div>
+            </div>
+
       <%# <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
         <span class="input-group-btn">
@@ -51,14 +56,11 @@
             <p> <%= post.content%></p>
             <br><br>
             <% end%>    
-    </div>
+        </div>
     <br><br>       
     </div>
 
 <%= erb :footer %>
-    
 
-<script type="text/javascript" src="/Public/main.js"></script>
-</body>
-</html>
-
+ </html>   
+ </body>

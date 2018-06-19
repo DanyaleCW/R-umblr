@@ -1,5 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <%# <base href="/"> %>
+    <link rel="stylesheet" type="text/html" href="public/main.css">
+	<title>Surfin Life</title>
+</head> 
+    <body>
 
-<h1>Edit Profile</h1><br/>
+<h1>Edit Profile</h1><br>
+
+<a href="/profile">Back to Profile Page</a>
+<br>
+<br>
 
 <form action="/user/<%= @user.id %>" method="POST">
   <input type="hidden" name="method" value="PUT">
@@ -8,14 +23,14 @@
   <input type="text" name="email" value="<%= @user.email %>">
    <input type="text" name="password" value="<%= @user.password %>">
   <input type="text" name="birthday" value="<%= @user.birthday%>">
-  <input type="submit" value="Edit Profile" style="width:100px;height:100px">
-</form>
+  <input type="submit" value="Edit Profile" style="width:100px;height:20px">
+</form><br>
 
-<h1>Warning, once your click delete account you account will be gone forever. Well, it is the internet, nothing every really goes away.</h1>
+<h2>Warning, once your click delete account you account will be gone forever. Well, it is the internet, nothing every really goes away.</h2><br>
 
 <form action="/user/<%= @user.id %>" method="post">
-  <input type="hidden" name="_method" value="DELETE">  
+  <input type="hidden" color="red" name="_method" value="DELETE">  
   <input type="submit" value="Delete Account" style="width:100px;height:20px;">
-</form>
+</form><br>
 
 <%= erb :footer %>
